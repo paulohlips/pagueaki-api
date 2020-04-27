@@ -14,10 +14,9 @@ routes.get("/", (req, res) => {
 });
 
 routes.post("/sessions", SessionController.store);
-
+routes.post("/users", UserController.store);
 routes.use(authMiddleware);
 
 routes.get("/users", UserController.index);
-routes.post("/users", UserController.store);
 
 export default routes;
