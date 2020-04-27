@@ -9,6 +9,10 @@ const routes = new Router();
 
 routes.use(cors());
 
+routes.get("/", (req, res) => {
+  return res.json({ message: "Fala dev, estamos online!" });
+});
+
 routes.post("/sessions", SessionController.store);
 
 routes.use(authMiddleware);
