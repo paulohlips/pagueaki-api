@@ -16,52 +16,60 @@ class SessionController {
     });
 
     if (!(await schema.isValid(req.body))) {
-      return res.status(401).json({ error: "Validation fails" });
+      return res.status(422).json({
+        message: "Erro de validação. Verifique o body da requisição.",
+      });
     }
 
     const { phone, email, password } = req.body;
 
-    const user = await User.findOne({
-      where: {
-        [Op.or]: {
-          email: {
-            [Op.like]: email,
-          },
-          phone: {
-            [Op.like]: phone,
+    try {
+      const user = await User.findOne({
+        where: {
+          [Op.or]: {
+            email: {
+              [Op.like]: email,
+            },
+            phone: {
+              [Op.like]: phone,
+            },
           },
         },
-      },
-      include: [
-        {
-          model: File,
-          as: "avatar",
-          attributes: ["id", "path"],
+        include: [
+          {
+            model: File,
+            as: "avatar",
+            attributes: ["id", "path"],
+          },
+        ],
+      });
+
+      if (!user) {
+        return res.status(404).json({ message: "Usuário não encontrado." });
+      }
+
+      if (!(await user.checkPassword(password))) {
+        return res
+          .status(401)
+          .json({ message: "A senha informada está incorreta." });
+      }
+
+      const { id, name, avatar } = user;
+
+      return res.json({
+        user: {
+          id,
+          name,
+          phone,
+          avatar,
         },
-      ],
-    });
-
-    if (!user) {
-      return res.status(401).json({ error: "User not found" });
+        token: jwt.sign({ id }, auth.secret, {
+          expiresIn: auth.expiresIn,
+        }),
+      });
+    } catch (err) {
+      return res.status(500).json({ message: `${err}` });
     }
-
-    if (!(await user.checkPassword(password))) {
-      return res.status(401).json({ error: "Password does not match" });
-    }
-
-    const { id, name, avatar } = user;
-
-    return res.json({
-      user: {
-        id,
-        name,
-        phone,
-        avatar,
-      },
-      token: jwt.sign({ id }, auth.secret, {
-        expiresIn: auth.expiresIn,
-      }),
-    });
   }
 }
 

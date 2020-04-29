@@ -3,7 +3,7 @@ import * as Yup from "yup";
 
 class UserController {
   async store(req, res) {
-    /*     const schema = Yup.object().shape({
+    const schema = Yup.object().shape({
       name: Yup.string(),
       phone: Yup.string(),
       email: Yup.string().email().required(),
@@ -11,30 +11,40 @@ class UserController {
     });
 
     if (!(await schema.isValid(req.body))) {
-      return res.status(400).json({ error: "Validation fails" });
+      return res.status(422).json({
+        message: "Erro de validação. Verifique o body da requisição.",
+      });
     }
 
-    const userExists = await User.findOne({ where: { email: req.body.email } });
+    try {
+      const { email, phone } = req.body;
 
-    if (userExists) {
-      return res.status(400).json({ error: "User already exists." });
+      const userEmailExists = await User.findOne({ where: { email } });
+
+      const userPhoneExists = await User.findOne({ where: { phone } });
+
+      if (userEmailExists || userPhoneExists) {
+        return res
+          .status(422)
+          .json({ message: "O usuário já está cadastrado." });
+      }
+
+      const user = await User.create(req.body);
+
+      return res.json(user);
+    } catch (err) {
+      return res.status(500).json({ message: `${err}` });
     }
-     */
-
-    const { id, name, email, phone } = await User.create(req.body);
-
-    return res.json({
-      id,
-      name,
-      email,
-      phone,
-    });
   }
 
   async index(req, res) {
-    const users = await User.findAll();
+    try {
+      const users = await User.findAll();
 
-    return res.json(users);
+      return res.json(users);
+    } catch (err) {
+      return res.status(500).json({ message: `${err}` });
+    }
   }
 }
 

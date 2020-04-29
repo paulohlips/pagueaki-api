@@ -3,29 +3,37 @@ import File from "../models/File";
 
 class FileController {
   async store(req, res) {
-    const { originalname: name, filename: pathParam } = req.file;
-    console.log({ name, pathParam });
-    const file = await File.create({
-      name,
-      path: pathParam,
-    });
-    return res.json({ file });
+    try {
+      const { originalname: name, filename: pathParam } = req.file;
+      console.log({ name, pathParam });
+      const file = await File.create({
+        name,
+        path: pathParam,
+      });
+      return res.json({ file });
+    } catch (err) {
+      return res.status(500).json({ message: `${err}` });
+    }
   }
 
   async show(req, res) {
-    const { file } = req.params;
+    try {
+      const { file } = req.params;
 
-    const filePath = path.resolve(
-      __dirname,
-      "..",
-      "..",
-      "..",
-      "tmp",
-      "uploads",
-      file
-    );
+      const filePath = path.resolve(
+        __dirname,
+        "..",
+        "..",
+        "..",
+        "tmp",
+        "uploads",
+        file
+      );
 
-    return res.sendFile(filePath);
+      return res.sendFile(filePath);
+    } catch (err) {
+      return res.status(500).json({ message: `${err}` });
+    }
   }
 }
 
