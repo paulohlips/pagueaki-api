@@ -5,7 +5,11 @@ class DrugstoreController {
   async store(req, res) {
     const schema = Yup.object().shape({
       name: Yup.string().required(),
-      address: Yup.string().required(),
+      last_name: Yup.string().required(),
+      city: Yup.string().required(),
+      neighborhood: Yup.string().required(),
+      public_place: Yup.string().required(),
+      address_number: Yup.number().required(),
       cep: Yup.string().required(),
       uf: Yup.string().required(),
       phone1: Yup.string().required(),
@@ -17,13 +21,16 @@ class DrugstoreController {
       civil_state: Yup.string().required(),
       genre: Yup.string().required(),
       professional_situation: Yup.string().required(),
+      public_agency: Yup.string(),
       height: Yup.number().required(),
       weight: Yup.number().required(),
       medicine: Yup.string(),
       dependent: Yup.string(),
       payment_method: Yup.string().required(),
       payment_day: Yup.number().required(),
-      bank_information: Yup.string().required(),
+      bank_name: Yup.string(),
+      bank_agency: Yup.string(),
+      bank_account_number: Yup.string(),
     });
 
     if (!(await schema.isValid(req.body))) {

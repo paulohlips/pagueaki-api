@@ -18,7 +18,27 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      address: {
+      last_name: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      city: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      public_place: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      /*       state: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      }, */
+      neighborhood: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      address_number: {
         type: Sequelize.STRING,
         allowNull: false,
       },
@@ -66,6 +86,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      public_agency: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
       height: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -90,9 +114,17 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      bank_information: {
+      bank_name: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
+      },
+      bank_agency: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      bank_account_number: {
+        type: Sequelize.STRING,
+        allowNull: true,
       },
       created_at: {
         type: Sequelize.DATE,
