@@ -7,6 +7,7 @@ import UserController from "./app/controllers/UserController";
 import SessionController from "./app/controllers/SessionController";
 import FileController from "./app/controllers/FilesController";
 import DrugstoreController from "./app/controllers/DrugstoreController";
+import DrugstoreFileController from "./app/controllers/DrugstoreFileController";
 
 import authMiddleware from "./app/middlewares/auth";
 
@@ -28,6 +29,11 @@ routes.get("/users", UserController.index);
 
 routes.get("/drugstore", DrugstoreController.index);
 routes.post("/drugstore", DrugstoreController.store);
+routes.post(
+  "/drugstoreFiles",
+  upload.array("file"),
+  DrugstoreFileController.store
+);
 
 routes.post("/files", upload.single("file"), FileController.store);
 routes.get("/files/:file", FileController.show);
