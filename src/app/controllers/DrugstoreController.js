@@ -40,7 +40,10 @@ class DrugstoreController {
     }
 
     try {
-      const { email } = req.body;
+      let body = req.body;
+      const { email } = body;
+
+      body = { ...body, user_id: req.userId };
 
       const userEmailExists = await Drugstore.findOne({ where: { email } });
 
@@ -49,7 +52,7 @@ class DrugstoreController {
           .status(422)
           .json({ message: "O usuário já possui um contrato ativo." });
       }
-      const contract = await Drugstore.create(req.body);
+      const contract = await Drugstore.create(body);
       return res.json(contract);
     } catch (err) {
       return res.status(500).json({ message: `${err}` });
@@ -58,7 +61,11 @@ class DrugstoreController {
 
   async index(req, res) {
     try {
-      const contracts = await Drugstore.findAll();
+      const contracts = await Drugstore.findOne({
+        where: {
+          user_id: req.params.user,
+        },
+      });
 
       return res.json(contracts);
     } catch (err) {

@@ -4,13 +4,7 @@ import DrugstoreFile from "../models/DrugstoreFile";
 class DrugstoreFileController {
   async store(req, res) {
     try {
-      /*   const { originalname: name, filename: pathParam } = req.file;
-      const file = await File.create({
-        name,
-        path: pathParam,
-      }); */
       const filesArray = req.files;
-      const fileStored = [];
 
       filesArray.forEach(async (file) => {
         const name = file.originalname;
