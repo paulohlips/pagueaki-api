@@ -1,4 +1,5 @@
 import User from "../models/User";
+import Drugstore from "../models/Drugstore";
 import * as Yup from "yup";
 
 class UserController {
@@ -45,6 +46,24 @@ class UserController {
     } catch (err) {
       return res.status(500).json({ message: `${err}` });
     }
+  }
+
+  async show(req, res) {
+    try {
+      const { user } = req.params;
+
+      const drugstore = await Drugstore.findOne({
+        where: {
+          user_id: user,
+        },
+      });
+
+      return res.json({
+        drugstore: drugstore,
+        truck: null,
+        loan: null,
+      });
+    } catch (err) {}
   }
 }
 

@@ -35,6 +35,8 @@ routes.post(
   DrugstoreFileController.store
 );
 
+routes.get("/userContracts/:user", UserController.show);
+
 routes.post("/files", upload.single("file"), FileController.store);
 routes.get("/files/:file", FileController.show);
 
