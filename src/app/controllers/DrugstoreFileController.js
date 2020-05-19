@@ -6,18 +6,24 @@ class DrugstoreFileController {
     try {
       const filesArray = req.files;
 
-      filesArray.forEach(async (file) => {
-        const name = file.originalname;
-        const pathParam = file.filename;
+      Object.values(filesArray).forEach((file) => {
+        file.forEach(async (data) => {
+          const fileName = data.originalname;
+          const pathParam = data.filename;
+          const name = data.fieldname;
 
-        const stored = await DrugstoreFile.create({
-          user_id: req.userId,
-          name,
-          path: pathParam,
+          const stored = await DrugstoreFile.create({
+            user_id: req.userId,
+            name,
+            file: fileName,
+            path: pathParam,
+          });
         });
 
         return res.json({
-          message: `Upload de ${filesArray.length} arquivos finalizado.`,
+          message: `Upload de ${
+            Object.keys(filesArray).length
+          } arquivos finalizado.`,
         });
       });
     } catch (err) {

@@ -6,6 +6,7 @@ class DrugstoreFile extends Model {
       {
         user_id: Sequelize.INTEGER,
         name: Sequelize.STRING,
+        file: Sequelize.STRING,
         path: Sequelize.STRING,
         url: {
           type: Sequelize.VIRTUAL,

@@ -8,6 +8,7 @@ import SessionController from "./app/controllers/SessionController";
 import FileController from "./app/controllers/FilesController";
 import DrugstoreController from "./app/controllers/DrugstoreController";
 import DrugstoreFileController from "./app/controllers/DrugstoreFileController";
+import DownloadFileController from "./app/controllers/DownloadFileController";
 
 import authMiddleware from "./app/middlewares/auth";
 
@@ -31,7 +32,10 @@ routes.get("/drugstore/:user", DrugstoreController.index);
 routes.post("/drugstore", DrugstoreController.store);
 routes.post(
   "/drugstoreFiles",
-  upload.array("file"),
+  upload.fields([
+    { name: "foto_rosto", maxCount: 1 },
+    { name: "foto_doc", maxCount: 8 },
+  ]),
   DrugstoreFileController.store
 );
 
@@ -39,5 +43,7 @@ routes.get("/userContracts/:user", UserController.show);
 
 routes.post("/files", upload.single("file"), FileController.store);
 routes.get("/files/:file", FileController.show);
+
+routes.get("/download/:file", DownloadFileController.show);
 
 export default routes;
