@@ -26,7 +26,7 @@ routes.post("/users", UserController.store);
 
 routes.use(authMiddleware);
 
-routes.get("/users", UserController.index);
+routes.get("/users", UserController.show);
 
 routes.get("/drugstore/:user", DrugstoreController.index);
 routes.post("/drugstore", DrugstoreController.store);

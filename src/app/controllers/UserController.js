@@ -50,7 +50,7 @@ class UserController {
 
   async show(req, res) {
     try {
-      const { user } = req.params;
+      const { user } = req.userId;
 
       const drugstore = await Drugstore.findOne({
         where: {
