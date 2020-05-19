@@ -24,6 +24,8 @@ routes.get("/", (req, res) => {
 routes.post("/sessions", SessionController.store);
 routes.post("/users", UserController.store);
 
+routes.get("/download/:file", DownloadFileController.show);
+
 routes.use(authMiddleware);
 
 routes.get("/users", UserController.show);
@@ -43,7 +45,5 @@ routes.get("/userContracts/:user", UserController.show);
 
 routes.post("/files", upload.single("file"), FileController.store);
 routes.get("/files/:file", FileController.show);
-
-routes.get("/download/:file", DownloadFileController.show);
 
 export default routes;
