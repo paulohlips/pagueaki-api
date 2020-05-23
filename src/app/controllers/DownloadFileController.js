@@ -4,7 +4,7 @@ class DownloadFileController {
   async show(req, res) {
     const { file } = req.params;
     try {
-      res.sendFile(path.resolve("src", "static", `${file}.pdf`));
+      res.sendFile(path.resolve("static", `${file}.pdf`));
     } catch (err) {
       return res.json({ message: `Erro no servidor.${err}` });
     }

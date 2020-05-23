@@ -9,6 +9,7 @@ import FileController from "./app/controllers/FilesController";
 import DrugstoreController from "./app/controllers/DrugstoreController";
 import DrugstoreFileController from "./app/controllers/DrugstoreFileController";
 import DownloadFileController from "./app/controllers/DownloadFileController";
+import TruckController from "./app/controllers/TruckController";
 
 import authMiddleware from "./app/middlewares/auth";
 
@@ -40,6 +41,9 @@ routes.post(
   ]),
   DrugstoreFileController.store
 );
+
+routes.get("/trucks/:user", TruckController.index);
+routes.post("/trucks", TruckController.store);
 
 routes.get("/userContracts/:user", UserController.show);
 

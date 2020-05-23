@@ -1,6 +1,6 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("drugstores", {
+    return queryInterface.createTable("trucks", {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -22,31 +22,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      city: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      public_place: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      /*       state: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      }, */
-      neighborhood: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      address_number: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      cep: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      uf: {
+      email: {
         type: Sequelize.STRING,
         allowNull: false,
       },
@@ -57,18 +33,6 @@ module.exports = {
       phone2: {
         type: Sequelize.STRING,
         allowNull: true,
-      },
-      email: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      cpf: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      rg: {
-        type: Sequelize.STRING,
-        allowNull: false,
       },
       birth_date: {
         type: Sequelize.STRING,
@@ -82,14 +46,6 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      professional_situation: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      public_agency: {
-        type: Sequelize.STRING,
-        allowNull: true,
-      },
       height: {
         type: Sequelize.FLOAT,
         allowNull: false,
@@ -98,33 +54,73 @@ module.exports = {
         type: Sequelize.FLOAT,
         allowNull: false,
       },
-      medicine: {
-        type: Sequelize.STRING,
-        allowNull: true,
-      },
-      dependent: {
-        type: Sequelize.STRING,
-        allowNull: true,
-      },
-      payment_method: {
+      professional_situation: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      payment_day: {
-        type: Sequelize.INTEGER,
+      income: {
+        type: Sequelize.STRING,
         allowNull: false,
       },
-      bank_name: {
+
+      city: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      uf: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      neighborhood: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      address_number: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      cep: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      dependents: {
         type: Sequelize.STRING,
         allowNull: true,
       },
-      bank_agency: {
+      cpf: {
         type: Sequelize.STRING,
-        allowNull: true,
+        allowNull: false,
       },
-      bank_account_number: {
+      rg: {
         type: Sequelize.STRING,
-        allowNull: true,
+        allowNull: false,
+      },
+
+      via: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+
+      renavan: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      truck_plate: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      truck_brand: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      truck_model: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+
+      truck_color: {
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       created_at: {
         type: Sequelize.DATE,
@@ -138,6 +134,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("drugstores");
+    return queryInterface.dropTable("trucks");
   },
 };
