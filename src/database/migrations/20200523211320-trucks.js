@@ -47,11 +47,11 @@ module.exports = {
         allowNull: false,
       },
       height: {
-        type: Sequelize.FLOAT,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       weight: {
-        type: Sequelize.FLOAT,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       professional_situation: {

@@ -83,11 +83,11 @@ module.exports = {
         allowNull: true,
       },
       height: {
-        type: Sequelize.FLOAT,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       weight: {
-        type: Sequelize.FLOAT,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       medicine: {
@@ -103,7 +103,7 @@ module.exports = {
         allowNull: false,
       },
       payment_day: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       bank_name: {

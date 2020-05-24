@@ -15,9 +15,29 @@ class UserController {
     });
 
     if (!(await schema.isValid(req.body))) {
-      return res.status(422).json({
-        message: "Erro de validação. Verifique o body da requisição.",
+      console.log("ok");
+      let errorForm = {};
+      Object.keys(schema).map((keySchema) => {
+        Object.keys(req.body).map(async (keyForm) => {
+          if (keySchema === keyForm) {
+            try {
+              await schema[keySchema].validate(form[keyForm]);
+              delete error[keyForm];
+            } catch (err) {
+              console.log({ ERROR_VALIDATE: err });
+              error[keyForm] = pt[err.errors[0]];
+              errorForm = {
+                ...errorForm,
+                [keyForm]: err.errors,
+              };
+            }
+          }
+        });
       });
+      return res.status(422).json(errorForm);
+      /*   return res.status(422).json({
+        message: "Erro de validação. Verifique o body da requisição.",
+      }); */
     }
 
     try {
