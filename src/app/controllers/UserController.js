@@ -44,15 +44,16 @@ class UserController {
   async show(req, res) {
     try {
       const user = req.userId;
-      console.log(user);
 
-      const { name, email, phone } = await User.findOne({
+      const userData = await User.findOne({
         where: {
           id: user,
         },
       });
 
-      if (!email) {
+      console.log(user);
+
+      if (!userData) {
         return res.status(401).json({ message: "Usuário não encontrado." });
       }
 
@@ -73,6 +74,8 @@ class UserController {
           user_id: user,
         },
       });
+
+      const { name, email, phone } = userData;
 
       return res.json({
         name,
