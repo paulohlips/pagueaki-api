@@ -69,7 +69,7 @@ class UserController {
         },
       });
 
-      const { path } = await File.findOne({
+      const { path: profile } = await File.findOne({
         where: {
           user_id: user,
         },
@@ -83,7 +83,7 @@ class UserController {
         phone,
         drugstore: drugstoreData,
         truck: truckData,
-        profile_url: path,
+        profile_url: profile,
       });
     } catch (err) {
       return res.status(500).json({ message: `Erro no servidor. ${err}` });
