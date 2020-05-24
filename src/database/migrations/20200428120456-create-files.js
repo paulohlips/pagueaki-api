@@ -7,6 +7,13 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
       },
+      user_id: {
+        type: Sequelize.INTEGER,
+        references: { model: "users", key: "id" },
+        onUpdate: "SET NULL",
+        onDelete: "SET NULL",
+        allowNull: true,
+      },
       name: {
         type: Sequelize.STRING,
         allowNull: false,

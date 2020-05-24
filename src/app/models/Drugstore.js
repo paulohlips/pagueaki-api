@@ -31,6 +31,8 @@ class Drugstore extends Model {
         bank_name: Sequelize.STRING,
         bank_agency: Sequelize.STRING,
         bank_account_number: Sequelize.STRING,
+        bank_account_number: Sequelize.STRING,
+        status: Sequelize.STRING,
       },
       {
         sequelize,

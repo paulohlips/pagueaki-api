@@ -26,14 +26,6 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      public_place: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      /*       state: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      }, */
       neighborhood: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -125,6 +117,11 @@ module.exports = {
       bank_account_number: {
         type: Sequelize.STRING,
         allowNull: true,
+      },
+      status: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        defaultValue: "Under Analysis",
       },
       created_at: {
         type: Sequelize.DATE,

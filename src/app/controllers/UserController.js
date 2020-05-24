@@ -1,5 +1,8 @@
 import User from "../models/User";
 import Drugstore from "../models/Drugstore";
+import Truck from "../models/Truck";
+import File from "../models/File";
+
 import * as Yup from "yup";
 
 class UserController {
@@ -50,20 +53,50 @@ class UserController {
 
   async show(req, res) {
     try {
-      const { user } = req.userId;
+      const user = req.userId;
+      console.log(user);
 
-      const drugstore = await Drugstore.findOne({
+      const { name, email, phone } = await User.findOne({
+        where: {
+          id: user,
+        },
+      });
+
+      if (!email) {
+        return res.status(401).json({ message: "Usuário não encontrado." });
+      }
+
+      const drugstoreData = await Drugstore.findOne({
+        where: {
+          user_id: user,
+        },
+      });
+
+      const truckData = await Truck.findOne({
+        where: {
+          user_id: user,
+        },
+      });
+      const { status: drugStatus } = drugstoreData;
+      const { status: truckStatus } = truckData;
+
+      const { path } = await File.findOne({
         where: {
           user_id: user,
         },
       });
 
       return res.json({
-        drugstore: drugstore,
-        truck: null,
-        loan: null,
+        name,
+        email,
+        phone,
+        drugstore: drugstoreData,
+        truck: truckData,
+        profile_url: path,
       });
-    } catch (err) {}
+    } catch (err) {
+      return res.status(500).json({ message: `Erro no servidor. ${err}` });
+    }
   }
 }
 

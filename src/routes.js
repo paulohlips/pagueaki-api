@@ -45,7 +45,7 @@ routes.post(
 routes.get("/trucks/:user", TruckController.index);
 routes.post("/trucks", TruckController.store);
 
-routes.get("/userContracts/:user", UserController.show);
+routes.get("/userContracts", UserController.show);
 
 routes.post("/files", upload.single("file"), FileController.store);
 routes.get("/files/:file", FileController.show);

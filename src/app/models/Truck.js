@@ -30,6 +30,7 @@ class Truck extends Model {
         truck_brand: Sequelize.STRING,
         truck_model: Sequelize.STRING,
         truck_color: Sequelize.STRING,
+        status: Sequelize.STRING,
       },
       {
         sequelize,

@@ -5,7 +5,10 @@ class FileController {
   async store(req, res) {
     try {
       const { originalname: name, filename: pathParam } = req.file;
+      const user_id = req.userId;
+
       const file = await File.create({
+        user_id,
         name,
         path: pathParam,
       });
