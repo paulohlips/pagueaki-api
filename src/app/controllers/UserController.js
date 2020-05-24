@@ -69,7 +69,7 @@ class UserController {
         },
       });
 
-      const { path: profile } = await File.findOne({
+      const profile = await File.findOne({
         where: {
           user_id: user,
         },
