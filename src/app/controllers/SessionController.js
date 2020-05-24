@@ -35,13 +35,6 @@ class SessionController {
             },
           },
         },
-        include: [
-          {
-            model: File,
-            as: "avatar",
-            attributes: ["id", "path"],
-          },
-        ],
       });
 
       if (!user) {
