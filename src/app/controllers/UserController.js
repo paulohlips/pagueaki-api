@@ -8,36 +8,16 @@ import * as Yup from "yup";
 class UserController {
   async store(req, res) {
     const schema = Yup.object().shape({
-      name: Yup.string(),
-      phone: Yup.string(),
+      name: Yup.string().required(),
+      phone: Yup.string().required(),
       email: Yup.string().email().required(),
       password: Yup.string().required().min(6),
     });
 
     if (!(await schema.isValid(req.body))) {
-      console.log("ok");
-      let errorForm = {};
-      Object.keys(schema).map((keySchema) => {
-        Object.keys(req.body).map(async (keyForm) => {
-          if (keySchema === keyForm) {
-            try {
-              await schema[keySchema].validate(form[keyForm]);
-              delete error[keyForm];
-            } catch (err) {
-              console.log({ ERROR_VALIDATE: err });
-              error[keyForm] = pt[err.errors[0]];
-              errorForm = {
-                ...errorForm,
-                [keyForm]: err.errors,
-              };
-            }
-          }
-        });
-      });
-      return res.status(422).json(errorForm);
-      /*   return res.status(422).json({
+      return res.status(422).json({
         message: "Erro de validação. Verifique o body da requisição.",
-      }); */
+      });
     }
 
     try {
@@ -56,16 +36,6 @@ class UserController {
       const user = await User.create(req.body);
 
       return res.json(user);
-    } catch (err) {
-      return res.status(500).json({ message: `${err}` });
-    }
-  }
-
-  async index(req, res) {
-    try {
-      const users = await User.findAll();
-
-      return res.json(users);
     } catch (err) {
       return res.status(500).json({ message: `${err}` });
     }
@@ -97,8 +67,6 @@ class UserController {
           user_id: user,
         },
       });
-      const { status: drugStatus } = drugstoreData;
-      const { status: truckStatus } = truckData;
 
       const { path } = await File.findOne({
         where: {
