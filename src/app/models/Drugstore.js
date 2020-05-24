@@ -7,7 +7,6 @@ class Drugstore extends Model {
         name: Sequelize.STRING,
         last_name: Sequelize.STRING,
         city: Sequelize.STRING,
-        public_place: Sequelize.STRING,
         neighborhood: Sequelize.STRING,
         address_number: Sequelize.NUMBER,
         cep: Sequelize.STRING,
