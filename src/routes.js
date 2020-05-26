@@ -10,6 +10,7 @@ import DrugstoreController from "./app/controllers/DrugstoreController";
 import DrugstoreFileController from "./app/controllers/DrugstoreFileController";
 import DownloadFileController from "./app/controllers/DownloadFileController";
 import TruckController from "./app/controllers/TruckController";
+import PagueakiController from "./app/controllers/PagueakiController";
 
 import authMiddleware from "./app/middlewares/auth";
 
@@ -41,6 +42,9 @@ routes.post(
   ]),
   DrugstoreFileController.store
 );
+
+routes.get("/pagueaki", PagueakiController.show);
+routes.post("/pagueaki", PagueakiController.store);
 
 routes.get("/trucks/:user", TruckController.index);
 routes.post("/trucks", TruckController.store);

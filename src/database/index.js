@@ -5,10 +5,11 @@ import File from "../app/models/File";
 import Drugstore from "../app/models/Drugstore";
 import DrugstoreFile from "../app/models/DrugstoreFile";
 import Truck from "../app/models/Truck";
+import PagueAki from "../app/models/PagueAki";
 
 import databaseConfig from "../config/database";
 
-const models = [User, File, Drugstore, DrugstoreFile, Truck];
+const models = [User, File, Drugstore, DrugstoreFile, Truck, PagueAki];
 
 class Database {
   constructor() {
