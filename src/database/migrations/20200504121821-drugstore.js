@@ -22,55 +22,16 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      city: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      neighborhood: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      address_number: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      cep: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      uf: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
+
       phone1: {
         type: Sequelize.STRING,
         allowNull: false,
-      },
-      phone2: {
-        type: Sequelize.STRING,
-        allowNull: true,
       },
       email: {
         type: Sequelize.STRING,
         allowNull: false,
       },
       cpf: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      rg: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      birth_date: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      civil_state: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      genre: {
         type: Sequelize.STRING,
         allowNull: false,
       },
@@ -82,27 +43,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true,
       },
-      height: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      weight: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      medicine: {
-        type: Sequelize.STRING,
-        allowNull: true,
-      },
-      dependent: {
-        type: Sequelize.STRING,
-        allowNull: true,
-      },
       payment_method: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      payment_day: {
         type: Sequelize.STRING,
         allowNull: false,
       },
@@ -122,6 +63,11 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
         defaultValue: "Under Analysis",
+      },
+      associated: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
       },
       created_at: {
         type: Sequelize.DATE,
