@@ -7,6 +7,9 @@ class Pagueaki extends Model {
         name: Sequelize.STRING,
         email: Sequelize.STRING,
         phone: Sequelize.STRING,
+        cpf: Sequelize.STRING,
+        status: Sequelize.STRING,
+        associated: Sequelize.BOOLEAN,
       },
       {
         sequelize,

@@ -21,6 +21,21 @@ module.exports = {
         allowNull: false,
         unique: true,
       },
+      cpf: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true,
+      },
+      status: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        defaultValue: "Under Analysis",
+      },
+      associated: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+      },
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,
