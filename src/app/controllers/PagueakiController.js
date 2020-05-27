@@ -8,6 +8,7 @@ class PagueakiController {
       name: Yup.string().required(),
       phone: Yup.string().required(),
       email: Yup.string().email().required(),
+      cpf: Yup.string().required(),
     });
 
     if (!(await schema.isValid(req.body))) {
