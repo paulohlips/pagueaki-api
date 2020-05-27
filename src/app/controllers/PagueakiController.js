@@ -13,7 +13,7 @@ class PagueakiController {
 
     if (!(await schema.isValid(req.body))) {
       return res.status(422).json({
-        message: "Erro de validação. Verifique o body da requisição.",
+        message: "Erro de validação. Verifique o body da requisição!",
       });
     }
 
