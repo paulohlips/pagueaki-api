@@ -1,10 +1,10 @@
 import Sequelize, { Model } from "sequelize";
 
-class DrugstoreFile extends Model {
+class TruckFiles extends Model {
   static init(sequelize) {
     super.init(
       {
-        user_id: Sequelize.INTEGER,
+        email: Sequelize.STRING,
         name: Sequelize.STRING,
         file: Sequelize.STRING,
         path: Sequelize.STRING,
@@ -23,9 +23,9 @@ class DrugstoreFile extends Model {
     return this;
   }
 
-  static associate(models) {
-    this.belongsTo(models.User, { foreignKey: "user_id", as: "user" });
-  }
+  /*   static associate(models) {
+    this.belongsTo(models.User, { foreignKey: "user_email", as: "user" });
+  } */
 }
 
-export default DrugstoreFile;
+export default TruckFiles;

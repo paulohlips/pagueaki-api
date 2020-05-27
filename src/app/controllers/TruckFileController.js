@@ -1,24 +1,25 @@
 import path from "path";
-import DrugstoreFile from "../models/DrugstoreFile";
+import TruckFile from "../models/TruckFile";
 
-class DrugstoreFileController {
+class TruckFileController {
   async store(req, res) {
     try {
       const filesArray = req.files;
+      //console.log(filesArray);
+      Object.values(filesArray).forEach(async (file) => {
+        //console.log(file);
+        /* file.forEach(async (data) => { */
+        const fileName = file.originalname;
+        const pathParam = file.filename;
+        const name = file.fieldname;
 
-      Object.values(filesArray).forEach((file) => {
-        file.forEach(async (data) => {
-          const fileName = data.originalname;
-          const pathParam = data.filename;
-          const name = data.fieldname;
-
-          const stored = await DrugstoreFile.create({
-            user_id: req.userId,
-            name,
-            file: fileName,
-            path: pathParam,
-          });
+        const stored = await TruckFile.create({
+          email: req.query.email,
+          name,
+          file: fileName,
+          path: pathParam,
         });
+        /* }); */
 
         return res.json({
           message: `Upload de ${
@@ -52,4 +53,4 @@ class DrugstoreFileController {
   }
 }
 
-export default new DrugstoreFileController();
+export default new TruckFileController();
