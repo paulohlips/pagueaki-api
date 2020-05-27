@@ -28,7 +28,7 @@ routes.post("/users", UserController.store);
 
 routes.get("/download/:file", DownloadFileController.show);
 
-//!routes.use(authMiddleware);
+//routes.use(authMiddleware);
 
 routes.get("/users", UserController.show);
 
